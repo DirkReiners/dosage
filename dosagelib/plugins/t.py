@@ -120,13 +120,12 @@ class TheWhiteboard(_ParserScraper):
     BROKEN_PAGE_MIDDLE = compile(r'</body></html><')
     url = 'http://www.the-whiteboard.com/'
     imageSearch = '//center/img'
-    prevSearch = '//a[text()="previous"]'
+    prevSearch = '//a[text()="Previous"]'
 
     # Another ugly hack :(
     def _parse_page(self, data):
         data = self.BROKEN_PAGE_MIDDLE.sub('<', data)
         return super(TheWhiteboard, self)._parse_page(data)
-
 
 class TheWotch(_WordPressScraper):
     url = 'http://www.thewotch.com/'
@@ -201,12 +200,11 @@ class TwoGuysAndGuy(_BasicScraper):
     rurl = escape(url)
     stripUrl = url + 'archives/%s'
     firstStripUrl = stripUrl % '4'
-    imageSearch = compile(tagre('img', 'src', r'(%scomics/\d{4}-\d{2}-\d{2}[^"]*)' % rurl))
-    prevSearch = compile(tagre('a', 'href', r'(%sarchives/\d+)' % rurl,
-                               after='title="Previous"'))
+    imageSearch = compile(tagre('img', 'src', r'(.*comics/[0-9]{10}-.*\.jpg)'))
+    prevSearch = compile(tagre('a', 'href', r'(.*/archives/[^"]*)', before='rel="prev"'))
     help = 'Index format: number'
     adult = True
-
+    
 
 class Twokinds(_ParserScraper):
     url = 'http://twokinds.keenspot.com/'

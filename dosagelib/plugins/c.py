@@ -39,9 +39,9 @@ class CaptainSNES(_BasicScraper):
 class Carciphona(_BasicScraper):
     url = 'http://carciphona.com/'
     multipleImagesPerStrip = True
-    imageSearch = compile(tagre("div", "style", r'background-image:url\((_pages[^)]*)\)'))
+    imageSearch = compile(tagre("img", "src", r'(/_pages/[0-9]*/[0-9]*/[0-9]*.jpg)'))
     prevSearch = compile(tagre("a", "href", r'(view\.php\?[^"]*)', after="prevarea"))
-    latestSearch = compile(tagre("a", "href", r'(read\.php\#chapter=[^"]*&page=[0-9]*[^"]*)'))
+    latestSearch = compile(tagre("a", "href", r'(read\.php\#chapter=[0-9]*&page=[0-9]*[^"]*)'))
     starter = indirectStarter
 
     def namer(self, image_url, page_url):

@@ -495,6 +495,14 @@ class _ParserScraper(Scraper):
             if searchUrl is not None:
                 searchUrls.append(searchUrl)
 
+        absu=[]
+        for u in searchUrls:
+            if not '/' in u:
+                u = url + "/" + u
+            absu.append(u)
+        searchUrls = absu
+        print("***fetchUrls: url=",url,"urlSearch=",urlSearch," result:", searchUrls)
+        
         if not searchUrls:
             raise ValueError("XPath %s not found at URL %s." %
                              (urlSearch, url))

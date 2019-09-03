@@ -19,7 +19,7 @@ class Lackadaisy(_BasicScraper):
     url = baseUrl + 'comic.php'
     stripUrl = baseUrl + 'comic.php?comicid=%s'
     firstStripUrl = stripUrl % '1'
-    imageSearch = compile(tagre("img", "src", r'(http://www\.lackadaisy\.com/comic/[^"]*)'))
+    imageSearch = compile(tagre("img", "src", r'(comic/[^"]*)'))
     prevSearch = compile(tagre("a", "href", r"(/comic\.php\?comicid=[0-9]+)") +
                          "Previous")
     nextSearch = compile(tagre("a", "href", r"(/comic.php\?comicid=[0-9]+)") +
