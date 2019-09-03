@@ -130,6 +130,7 @@ class ComicGetter(threading.Thread):
                 if self.options.dry_run:
                     filename, saved = "", False
                 else:
+                    print("***saveComicStrip: image:",image.url, image.filename)
                     filename, saved = image.save(self.options.basepath)
                 if saved:
                     allskipped = False

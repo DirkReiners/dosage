@@ -39,6 +39,7 @@ class ComicStrip(object):
 
     def getDownloader(self, url):
         """Get an image downloader."""
+        print("***getDownloader url=",url)
         filename = self.scraper.namer(url, self.strip_url)
         if filename is None:
             filename = url.rsplit('/', 1)[1]
