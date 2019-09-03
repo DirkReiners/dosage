@@ -89,6 +89,16 @@ class TheOrderOfTheStick(_BasicScraper):
         return page_url.rsplit('/', 1)[-1][:-5]
 
 
+class TheRockCocks(_BasicScraper):
+    url = 'http://rockcocks.slipshine.net/'
+    rurl = escape(url)
+    stripUrl = url + 'comics/%s'
+    firstStripUrl = stripUrl % "page-1-nsfw-track-1-start"
+    imageSearch = compile(tagre("img", "src", r'(%scomics/[^"]+)' % rurl, after='id="cc-comic"'))
+    prevSearch = compile(tagre("a", "href", r'(%scomic/[^"]+)' % rurl, after='rel="prev"'))
+    adult = True
+
+
 class TheThinHLine(_TumblrScraper):
     url = 'http://thinhline.tumblr.com/'
     firstStripUrl = url + 'post/4177372348/thl-1-a-cats-got-his-tongue-click-on-the'
@@ -154,6 +164,15 @@ class TracyAndTristan(_BasicScraper):
     imageSearch = compile(tagre("img", "src", r'(%simages/comics/[^"]+)' % rurl))
     prevSearch = compile(tagre("a", "href", r'(/comics/\d+)', after="prev"))
     help = 'Index format: number'
+
+
+class TrippingOverYou(_BasicScraper):
+    url = 'http://www.trippingoveryou.com/'
+    stripUrl = url + 'comic/%s'
+    firstStripUrl = stripUrl % 'wiggle-room'
+    imageSearch = compile(tagre("img", "src", r'([^"]+/comics/[^"]+)'))
+    prevSearch = compile(r'<a class="cc-prev" rel="prev" href="(.+?)">')
+    help = 'Index format: stripname'
 
 
 class TumbleDryComics(_WordPressScraper):

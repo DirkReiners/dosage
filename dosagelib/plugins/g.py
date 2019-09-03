@@ -83,7 +83,7 @@ class GirlGenius(_BasicScraper):
 
 
 class GirlsWithSlingshots(_BasicScraper):
-    url = 'http://www.girlswithslingshots.com/'
+    url = 'https://girlswithslingshots.com/'
     rurl = escape(url)
     stripUrl = url + 'comic/%s'
     firstStripUrl = stripUrl % 'gws1'
@@ -92,7 +92,8 @@ class GirlsWithSlingshots(_BasicScraper):
         compile(tagre("img", "src",
                       r'(http://cdn\.girlswithslingshots\.com/comics/[^"]+)')),
     )
-    prevSearch = compile(tagre("a", "href", r'(//www.girlswithslingshots.com/comic/[^"]+)',
+
+    prevSearch = compile(tagre("a", "href", r'(%scomic/[^"]+)' % rurl,
                                after="prev"))
 
     @classmethod
@@ -179,7 +180,7 @@ class GUComics(_BasicScraper):
 
 
 class GunnerkriggCourt(_BasicScraper):
-    url = 'http://www.gunnerkrigg.com/'
+    url = 'https://www.gunnerkrigg.com/'
     stripUrl = url + '?p=%s'
     imageSearch = compile(tagre("img", "src", r'(/comics/[^"]+)'))
     prevSearch = compile(
