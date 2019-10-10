@@ -15,14 +15,14 @@ class VGCats(_BasicScraper):
     url = 'http://www.vgcats.com/comics/'
     stripUrl = url + '?strip_id=%s'
     firstStripUrl = stripUrl % '0'
-    imageSearch = compile(tagre("img", "src", r'(images/x\d{6}\.[^"]+)'))
+    imageSearch = compile(tagre("img", "src", r'(images/\d{6}\.[^"]+)'))
     prevSearch = compile(tagre("a", "href", r'(\?strip_id=\d+)') +
                          tagre("img", "src", r"back\.gif"))
     help = 'Index format: n (unpadded)'
 
     def namer(self, image_url, page_url):
         i = image_url.rsplit('/')[-1]
-        return i[1:i.find(".pagespeed")]
+        return i[:i.find(".pagespeed")]
 
 
 class VGCatsAdventure(VGCats):

@@ -45,7 +45,7 @@ class Unsounded(_BasicScraper):
     prevSearch = compile(tagre("a", "href", r'([^"]*)', after='class="back'))
     latestSearch = compile(tagre("a", "href", r'(.*)') +
                            tagre("img", "src",
-                                 r"%simages/newpages\.png" % rurl))
+                                 r".*/newpages\.png"))
                                  
     startUrl = 'https://unsoundedupdates.tumblr.com/'
     starter = indirectStarter

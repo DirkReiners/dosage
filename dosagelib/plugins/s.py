@@ -228,7 +228,7 @@ class ShotgunShuffle(_WordPressScraper):
 class SinFest(_BasicScraper):
     url = 'http://www.sinfest.net/'
     stripUrl = url + 'view.php?date=%s'
-    imageSearch = compile(tagre("img", "src", r'(btphp/comics/.+)',
+    imageSearch = compile(tagre("img", "src", r'(btphp/comics/[^"]+)',
                                 after="alt"))
     prevSearch = compile(tagre("a", "href", r'(view\.php\?date=.+)') + '\\s*' +
                          tagre("img", "src", r'\.\./images/prev\.gif'))
