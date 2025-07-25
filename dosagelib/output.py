@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 
 
 def setup_console() -> console.Console:
-    return console.Console(theme=theme.Theme({
+    return console.Console(width=200, 
+    	theme=theme.Theme({
         # Simulates old dosage style
         "logging.level.error": "dim red",
         "logging.level.warning": "bold yellow",
