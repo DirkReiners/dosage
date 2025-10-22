@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -39,22 +39,11 @@ jobs:
 
       - name: Test with tox
         run: tox
-        if: ${{ matrix.python-version != env.DEFAULT_PYTHON }}
-
-      - name: Test with tox (and upload coverage)
-        uses: paambaati/codeclimate-action@v9.0.0
-        if: ${{ matrix.python-version == env.DEFAULT_PYTHON }}
-        env:
-          CC_TEST_REPORTER_ID: 2a411f596959fc32f5d73f3ba7cef8cc4d5733299d742dbfc97fd6c190b9010c
-        with:
-          coverageCommand: tox
-          coverageLocations: |
-            ${{ github.workspace }}/.tox/reports/*/coverage.xml:coverage.py
-          prefix: ${{ github.workspace }}/.tox/py313/lib/python3.13/site-packages
 
       - name: Submit Coverage to Qlty  # New "name" of CodeClimate Quality
-        uses: qltysh/qlty-action/coverage@v1
-        if: ${{ matrix.python-version == env.DEFAULT_PYTHON }}
+        uses: qltysh/qlty-action/coverage@v2
+        # OIDC on "external" pull requests doesn't work
+        if: ${{ matrix.python-version == env.DEFAULT_PYTHON && github.event.pull_request.head.repo.full_name == github.repository }}
         with:
           oidc: true
           files: '.tox/reports/*/coverage.lcov'
