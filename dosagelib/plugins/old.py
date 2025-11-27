@@ -29,7 +29,7 @@ class Removed(Scraper):
         return {'rem-' + self.reason: self.REASONS[self.reason]}
 
     @classmethod
-    def getmodules(cls):  # noqa: CFQ001
+    def getmodules(cls):
         return (
             # Removed in 2.16
             cls('AbleAndBaker'),
@@ -327,7 +327,6 @@ class Removed(Scraper):
             cls('GoComics/MinimumSecurity'),
             cls('GoComics/MixedMedications'),
             cls('GoComics/Molebashed'),
-            cls('GoComics/MollyandtheBear'),
             cls('GoComics/Mortimer'),
             cls('GoComics/MrGigiAndTheSquid'),
             cls('GoComics/MrMorris'),
@@ -1683,7 +1682,9 @@ class Removed(Scraper):
             cls('ComicsKingdom/FunnyOnlineAnimals'),
             cls('ComicsKingdom/GodsHands'),
             cls('ComicsKingdom/MaraLlaveKeeperOfTime'),
+            cls('Dilbert'),
             cls('GoComics/DarrinBell'),
+            cls('GoComics/EverydayPeopleCartoons'),
         )
 
 
@@ -1764,10 +1765,8 @@ class Renamed(Scraper):
             cls('ComicFury/MuddlemarchMudCompany', 'ComicFury/MudCompany'),
             cls('ComicsKingdom/ShermansLagoon', 'GoComics/ShermansLagoon'),
             cls('ComicsKingdom/TheLittleKing', 'ComicsKingdom/LittleKing'),
-            cls('GoComics/BloomCounty2017', 'GoComics/BloomCounty2019'),
-            cls('GoComics/Cathy', 'GoComics/CathyClassics'),
+            cls('GoComics/BloomCounty2017', 'GoComics/BloomCountyContinues'),
             cls('GoComics/Owlturd', 'GoComics/ShenComix'),
-            cls('GoComics/PeanutsEnEspanol', 'GoComics/SnoopyEnEspanol'),
             cls('GoComics/RipleysBelieveItOrNotSpanish', 'GoComics/RipleysAunqueUstedNoLoCrea'),
             cls('GoComics/WebcomicName', 'WebcomicName'),
             cls('GoComics/Widdershins', 'Widdershins'),
@@ -1797,4 +1796,10 @@ class Renamed(Scraper):
 
             # Renamed in 3.2
             cls('ComicsKingdom/WillyBlacksSpanish', 'ComicsKingdom/WillyBlackSpanish'),
+            cls('GoComics/BloomCounty2019', 'GoComics/BloomCountyContinues'),
+            cls('GoComics/CathyClassics', 'GoComics/Cathy'),
+            cls('GoComics/OutOfTheGenePoolReRuns', 'GoComics/OutOfTheGenePool'),
+            cls('GoComics/SnoopyEnEspanol', 'GoComics/PeanutsEnEspanol'),
+            cls('GoComics/TheWizardOfIdSpanish', 'GoComics/WizardOfIdEnEspanol'),
+            cls('PiledHigherAndDeeper', 'PHDComics'),
         )

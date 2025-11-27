@@ -3,8 +3,9 @@
 # SPDX-FileCopyrightText: © 2012 Bastian Kleineidam
 # SPDX-FileCopyrightText: © 2015 Tobias Gruetzmacher
 # SPDX-FileCopyrightText: © 2019 Daniel Ring
+from __future__ import annotations
+
 from re import compile, escape
-from typing import List
 
 from .. import util
 from ..helpers import bounceStarter, indirectStarter, joinPathPartsNamer
@@ -41,16 +42,16 @@ class CaptainSNES(_BasicScraper):
 
 
 class CarryOn(ParserScraper):
-    url = 'http://www.hirezfox.com/km/co/'
+    url = 'https://www.hirezfox.com/km/co/co1024/'
     stripUrl = url + 'd/%s.html'
     firstStripUrl = stripUrl % '20040701'
     imageSearch = '//div[d:class("strip")]/img'
     prevSearch = '//a[text()="Previous Day"]'
     multipleImagesPerStrip = True
 
-    def namer(self, imageUrl, pageUrl):
+    def namer(self, image_url, page_url):
         # Fix filenames of early comics
-        filename = imageUrl.rsplit('/', 1)[-1]
+        filename = util.urlpathsplit(image_url)[-1]
         if filename[0].isdigit():
             filename = 'co' + filename
         return filename
@@ -58,26 +59,26 @@ class CarryOn(ParserScraper):
 
 class CarryOnAliceBlueAndTheGardensOfQ(CarryOn):
     name = 'CarryOn/AliceBlueAndTheGardensOfQ'
-    url = 'http://www.hirezfox.com/km/abgq/abgq1024/'
+    url = 'https://www.hirezfox.com/km/abgq/abgq1024/'
     stripUrl = url + 'd/%s.html'
     firstStripUrl = stripUrl % '20050401'
     endOfLife = True
 
-    def namer(self, imageUrl, pageUrl):
+    def namer(self, image_url, page_url):
         # Fix filenames
-        return 'abgq' + imageUrl.rsplit('/', 1)[-1]
+        return 'abgq' + util.urlpathsplit(image_url)[-1]
 
 
 class CarryOnLegendOfAnneBunny(CarryOn):
     name = 'CarryOn/LegendOfAnneBunny'
-    url = 'http://www.hirezfox.com/km/loab/loab1024/'
+    url = 'https://www.hirezfox.com/km/loab/loab1024/'
     stripUrl = url + 'd/%s.html'
     firstStripUrl = stripUrl % '20040701'
     endOfLife = True
 
-    def namer(self, imageUrl, pageUrl):
+    def namer(self, image_url, page_url):
         # Fix filenames of early comics
-        filename = imageUrl.rsplit('/', 1)[-1]
+        filename = util.urlpathsplit(image_url)[-1]
         if filename[0].isdigit():
             filename = 'ab' + filename
         return filename
@@ -137,7 +138,7 @@ class CatenaManor(ParserScraper):
     imageSearch = '//img[d:class("comicthumbnail")]'
     multipleImagesPerStrip = True
     endOfLife = True
-    strips: List[str] = []
+    strips: list[str] = []
 
     def starter(self):
         # Retrieve archive links and select valid range
@@ -460,9 +461,9 @@ class CutLoose(ParserScraper):
     starter = bounceStarter
     adult = True
 
-    def namer(self, imageUrl, pageUrl):
-        postDate = '-'.join(util.urlpathsplit(pageUrl)[-3:])
-        filename = imageUrl.rsplit('/', 1)[-1]
+    def namer(self, image_url, page_url):
+        postDate = '-'.join(util.urlpathsplit(page_url)[-3:])
+        filename = util.urlpathsplit(image_url)[-1]
         return f'{postDate}_{filename}'
 
 
